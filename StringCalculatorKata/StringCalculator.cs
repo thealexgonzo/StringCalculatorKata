@@ -14,8 +14,31 @@ namespace StringCalculatorKata
             {
                 return 0;
             }
+            else if (nums.Length == 1)
+            {
+                return int.Parse(nums);
+            }
+            else
+            {
+                string[] numbers = nums.Split('\n', ',');
 
-            return int.Parse(nums);
+                int sum = 0;
+
+                for (int i = 0; i < numbers.Length; i++)
+                {
+                    if (numbers[i] != null)
+                    {
+                        sum += int.Parse(numbers[i]);
+                    }
+                    else
+                    {
+                        sum += 0;
+                    }
+                }
+
+                return sum;
+            }
+
         }
     }
 }
