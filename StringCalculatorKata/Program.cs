@@ -1,17 +1,19 @@
-﻿
-string nums = "1,";
+﻿//using StringCalculatorKata;
+//using System.Security.AccessControl;
 
-string[] numbers = nums.Split('\n', ',');
+//StringCalculator calculator = new StringCalculator();
 
-int sum = 0;
+//int sum = calculator.Add("1,2");
 
-for (int i = 0; i < numbers.Length; i++)
+string nums = "//***\n1***2";
+
+char[] delimeter;
+
+//delimeter = nums.Remove(nums[0], nums.IndexOf('\n')).ToCharArray();
+
+delimeter = nums.ToCharArray(0, nums.IndexOf("1") + 1);
+
+for (int i = 0; i < delimeter.Length; i++)
 {
-    Console.WriteLine(numbers[i]);
-    
-    //sum += int.Parse(numbers[i]);
+    Console.WriteLine(delimeter[i]);
 }
-
-Console.WriteLine(numbers.Length);
-
-//Console.WriteLine(sum);

@@ -10,6 +10,14 @@ namespace StringCalculatorKata
     {
         public int Add(string nums)
         {
+            char[] delimeter = [','];
+
+            if (nums.StartsWith("//"))
+            {
+                //delimeter = nums.Remove(nums[2], nums.IndexOf("\n") + 1);
+                delimeter = nums.ToCharArray(0, nums.IndexOf("\n"));
+            }
+
             if (string.IsNullOrEmpty(nums))
             {
                 return 0;
@@ -20,23 +28,41 @@ namespace StringCalculatorKata
             }
             else
             {
-                string[] numbers = nums.Split('\n', ',');
+                string[] numbersList = nums.Split(delimeter);
 
                 int sum = 0;
 
-                for (int i = 0; i < numbers.Length; i++)
+                List<int> negatives = new List<int>();
+
+                foreach (string currentNumber in numbersList)
                 {
-                    if (numbers[i] != null)
+                    int.TryParse(currentNumber, out int number);
+
+                    if (number < 0)
                     {
-                        sum += int.Parse(numbers[i]);
+                        negatives.Add(number);
                     }
                     else
                     {
-                        sum += 0;
+                        if (number > 1000)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            sum += number;
+                        }
                     }
                 }
 
-                return sum;
+                if (negatives.Count == 0)
+                {
+                    return sum;
+                }
+                else
+                {
+                    throw new System.Exception($"Negative numbers not allowed: {string.Join(",", negatives)}");
+                }
             }
 
         }
