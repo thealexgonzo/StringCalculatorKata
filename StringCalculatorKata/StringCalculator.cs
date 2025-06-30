@@ -10,16 +10,19 @@ namespace StringCalculatorKata
     {
         public int Add(string nums)
         {
-            char[] delimeters = ['\n', ','];
+            char[] delimeters = new char[100];
+            delimeters[0] = '\n';
+            delimeters[1] = ',';
 
             if (nums.StartsWith("//"))
             {
-                delimeters[1] = nums[2];
-
-                //if (nums[3] != '\n')
-                //{
-                //    delimeters[2] = nums[3];
-                //}
+                for (int i = 2; i <= nums.IndexOf('\n'); i++)
+                {
+                    if (!delimeters.Contains(nums[i]))
+                    {
+                        delimeters[i] = nums[i];
+                    }
+                }
             }
 
             if (string.IsNullOrEmpty(nums))
@@ -40,21 +43,22 @@ namespace StringCalculatorKata
 
                 foreach (string currentNumber in numbersList)
                 {
-                    int.TryParse(currentNumber, out int number);
-
-                    if (number < 0)
+                    if(int.TryParse(currentNumber, out int number))
                     {
-                        negatives.Add(number);
-                    }
-                    else
-                    {
-                        if (number > 1000)
+                        if (number < 0)
                         {
-                            continue;
+                            negatives.Add(number);
                         }
                         else
                         {
-                            sum += number;
+                            if (number > 1000)
+                            {
+                                continue;
+                            }
+                            else
+                            {
+                                sum += number;
+                            }
                         }
                     }
                 }

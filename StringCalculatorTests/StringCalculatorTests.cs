@@ -113,9 +113,9 @@ namespace StringCalculatorTests
 
             Assert.That(result, Is.EqualTo(3));
 
-            int result2 = calculator.Add("//&&&&&&&&\n1&&&&&&&&2");
+            int result2 = calculator.Add("//&&&&&&&&\n1&&&&&&&&2&&&&&&&&2");
 
-            Assert.That(result2, Is.EqualTo(3));
+            Assert.That(result2, Is.EqualTo(5));
         }
 
         [Test]
@@ -124,6 +124,22 @@ namespace StringCalculatorTests
             int result = calculator.Add("//*%\n1*2%3");
 
             Assert.That(result, Is.EqualTo(6));
+
+            int result2 = calculator.Add("//*%;.^£\n1*2%3;4.1^1£1");
+
+            Assert.That(result2, Is.EqualTo(13));
+        }
+
+        [Test]
+        public void Add_AllowMultipleDelimetersOfAnyLength_ReturnSum()
+        {
+            int result = calculator.Add("//***%%%\n1***2%%%3");
+
+            Assert.That(result, Is.EqualTo(6));
+
+            int result2 = calculator.Add("//******%%%%%%\n1******2%%%%%%3******2");
+
+            Assert.That(result2, Is.EqualTo(8));
         }
     }
 }

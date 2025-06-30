@@ -1,22 +1,11 @@
-﻿//using StringCalculatorKata;
-//using System.Security.AccessControl;
+﻿using StringCalculatorKata;
 
-//StringCalculator calculator = new StringCalculator();
+StringCalculator calculator = new StringCalculator();
 
-//int sum = calculator.Add("1,2");
+int result = calculator.Add("//*%;.^£\n1*2%3;4.1^1£1");
 
-string nums = "//***\n1***2";
+Console.WriteLine(result);
 
-char[] delimeter = [];
 
-char[] delimeter2;
 
-for (int i = 0; i < nums.IndexOf('\n'); i++)
-{
-    delimeter.Append(nums[i]);
-}
 
-for (int i = 0; i < delimeter.Length; i++)
-{
-    Console.WriteLine(delimeter[i]);
-}
