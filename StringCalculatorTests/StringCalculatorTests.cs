@@ -60,7 +60,6 @@ namespace StringCalculatorTests
         {
             int result = calculator.Add("1\n2,3");
             Assert.That(result, Is.EqualTo(6));
-
         }
 
         [Test]
@@ -113,6 +112,18 @@ namespace StringCalculatorTests
             int result = calculator.Add("//***\n1***2");
 
             Assert.That(result, Is.EqualTo(3));
+
+            int result2 = calculator.Add("//&&&&&&&&\n1&&&&&&&&2");
+
+            Assert.That(result2, Is.EqualTo(3));
+        }
+
+        [Test]
+        public void Add_AllowMultipleDelimeters_ReturnSum()
+        {
+            int result = calculator.Add("//*%\n1*2%3");
+
+            Assert.That(result, Is.EqualTo(6));
         }
     }
 }

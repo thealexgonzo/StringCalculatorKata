@@ -7,11 +7,14 @@
 
 string nums = "//***\n1***2";
 
-char[] delimeter;
+char[] delimeter = [];
 
-//delimeter = nums.Remove(nums[0], nums.IndexOf('\n')).ToCharArray();
+char[] delimeter2;
 
-delimeter = nums.ToCharArray(0, nums.IndexOf("1") + 1);
+for (int i = 0; i < nums.IndexOf('\n'); i++)
+{
+    delimeter.Append(nums[i]);
+}
 
 for (int i = 0; i < delimeter.Length; i++)
 {

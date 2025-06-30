@@ -10,12 +10,16 @@ namespace StringCalculatorKata
     {
         public int Add(string nums)
         {
-            char[] delimeter = [','];
+            char[] delimeters = ['\n', ','];
 
             if (nums.StartsWith("//"))
             {
-                //delimeter = nums.Remove(nums[2], nums.IndexOf("\n") + 1);
-                delimeter = nums.ToCharArray(0, nums.IndexOf("\n"));
+                delimeters[1] = nums[2];
+
+                //if (nums[3] != '\n')
+                //{
+                //    delimeters[2] = nums[3];
+                //}
             }
 
             if (string.IsNullOrEmpty(nums))
@@ -28,7 +32,7 @@ namespace StringCalculatorKata
             }
             else
             {
-                string[] numbersList = nums.Split(delimeter);
+                string[] numbersList = nums.Split(delimeters);
 
                 int sum = 0;
 
